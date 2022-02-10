@@ -207,21 +207,26 @@ REST_FRAMEWORK = {
 }
 
 # 配置数据库
-MYSQL_HOST = os.getenv('IZONE_MYSQL_HOST', '127.0.0.1')
-MYSQL_NAME = os.getenv('IZONE_MYSQL_NAME', 'izone')
-MYSQL_USER = os.getenv('IZONE_MYSQL_USER', 'root')
-MYSQL_PASSWORD = os.getenv('IZONE_MYSQL_PASSWORD', 'python')
-MYSQL_PORT = os.getenv('IZONE_MYSQL_PORT', 3306)
+# MYSQL_HOST = os.getenv('IZONE_MYSQL_HOST', '127.0.0.1')
+# MYSQL_NAME = os.getenv('IZONE_MYSQL_NAME', 'izone')
+# MYSQL_USER = os.getenv('IZONE_MYSQL_USER', 'root')
+# MYSQL_PASSWORD = os.getenv('IZONE_MYSQL_PASSWORD', 'python')
+# MYSQL_PORT = os.getenv('IZONE_MYSQL_PORT', 3306)
+
+PGSQL_HOST = os.getenv('IZONE_PGSQL_HOST', '158.101.94.232')
+PGSQL_NAME = os.getenv('IZONE_PGSQL_NAME', 'postgres')
+PGSQL_USER = os.getenv('IZONE_PGSQL_USER', 'postgres')
+PGSQL_PASSWORD = os.getenv('IZONE_MYSQL_PASSWORD', 'postgres')
+PGSQL_PORT = os.getenv('IZONE_PGSQL_PORT', 5432)
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # 修改数据库为MySQL，并进行配置
-        'NAME': MYSQL_NAME,  # 数据库的名称
-        'USER': MYSQL_USER,  # 数据库的用户名
-        'PASSWORD': MYSQL_PASSWORD,  # 数据库的密码
-        'HOST': MYSQL_HOST,
-        'PORT': MYSQL_PORT,
-        'OPTIONS': {'charset': 'utf8'}
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # 修改数据库为PGSQL，并进行配置
+        'NAME': PGSQL_NAME,  # 数据库的名称
+        'USER': PGSQL_USER,  # 数据库的用户名
+        'PASSWORD': PGSQL_PASSWORD,  # 数据库的密码
+        'HOST': PGSQL_HOST,
+        'PORT': PGSQL_PORT,
     }
 }
 
@@ -232,7 +237,7 @@ REDIS_PORT = os.getenv('IZONE_REDIS_PORT', 6379)
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://{}:{}".format(REDIS_HOST, REDIS_PORT),
+        "LOCATION": "redis://{}:{}/1".format(REDIS_HOST, REDIS_PORT),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -266,7 +271,7 @@ SITE_KEYWORDS = os.getenv('IZONE_SITE_KEYWORDS', 'izone,Django博客,个人博�
 
 # 个性化设置，非必要信息
 # 个人 Github 地址
-MY_GITHUB = os.getenv('IZONE_GITHUB', 'https://github.com/Hopetree')
+MY_GITHUB = os.getenv('IZONE_GITHUB', 'https://github.com/jimomiaomiao')
 # 工信部备案信息
 BEIAN = os.getenv('IZONE_BEIAN', '网站备案信息')
 # 站长统计（友盟）
